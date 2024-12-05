@@ -15,5 +15,5 @@ Additional information:
 ------------------------------------------------------------------------------------------------------------------------
 """
 
-import linear_regression
-import logistic_regression
+import models.linear_regression as linear_regression
+import models.logistic_regression as logistic_regression

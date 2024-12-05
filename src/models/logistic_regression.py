@@ -1,8 +1,11 @@
 import numpy
 import pandas
+
 import numpy as np
-from typing import Union
 import pandas as pd
+
+from typing import Union
+
 
 EPS = 1e-15
 
@@ -157,7 +160,12 @@ class MyLogReg:
 
         return f"MyLogReg class: n_iter={self.__n_iter}, learning_rate={self.__learning_rate}"
 
-    def __init__(self, n_iter: int = 10, learning_rate: float = 0.1, metric: str = None) -> None:
+    def __init__(
+        self,
+        n_iter: int = 10,
+        learning_rate: float = 0.1,
+        metric: str = None
+    ) -> None:
         """
         The method initializes the fields of the class.
 
@@ -183,7 +191,12 @@ class MyLogReg:
         else:
             raise "Error! Incorrect learning_rate argument value."
 
-    def fit(self, x: pandas.DataFrame, y: pandas.Series, verbose: Union[int, bool] = False) -> None:
+    def fit(
+        self,
+        x: pandas.DataFrame,
+        y: pandas.Series,
+        verbose: Union[int, bool] = False
+    ) -> None:
         """
         The method trains the model by finding the best weights.
 
@@ -219,13 +232,19 @@ class MyLogReg:
 
         self.__best_score = self.calc_metric(y, self.predict(x))
 
-    def predict(self, x: pandas.DataFrame):
+    def predict(
+        self,
+        x: pandas.DataFrame
+    ):
 
         res = converter(self.predict_proba(x))
 
         return res.astype(int)
 
-    def predict_proba(self, x: pandas.DataFrame):
+    def predict_proba(
+        self,
+        x: pandas.DataFrame
+    ):
 
         if "w0" not in x.columns:
             x.insert(0, "w0", 1.0)
@@ -244,7 +263,11 @@ class MyLogReg:
     def get_best_score(self):
         return self.__best_score
 
-    def calc_metric(self, y_proba, pred_y):
+    def calc_metric(
+        self,
+        y_proba,
+        pred_y
+    ):
         tp = 0
         fp = 0
         tn = 0
@@ -290,7 +313,11 @@ class MyLogReg:
             return None
 
     @staticmethod
-    def logging(step: int, loss_value: float, verbose: Union[int, bool] = False) -> None:
+    def logging(
+        step: int,
+        loss_value: float,
+        verbose: Union[int, bool] = False
+    ) -> None:
         """
         Prints loss values every n steps.
 
