@@ -1,9 +1,10 @@
-from typing import Union, Callable
+""""""
 
 import numpy
 import pandas
 import random
 
+from typing import Union, Callable
 
 class LinearRegression:
     """
@@ -218,10 +219,18 @@ class LinearRegression:
 ------------------------------------------------------------------------------------------------------------------------
     """
 
-    def __init__(self, num_iter: int = 100, learn_rate: Union[float, Callable] = 0.1,
-                 loss_type: str = "mse", metric_type: Union[str, None] = None,
-                 reg_type: Union[str, None] = None, l1_coef: float = 0, l2_coef: float = 0,
-                 sgd_samples: Union[int, float, None] = None, rand_state: int = 1) -> None:
+    def __init__(
+        self,
+        num_iter: int = 100,
+        learn_rate: Union[float, Callable] = 0.1,
+        loss_type: str = "mse",
+        metric_type: Union[str, None] = None,
+        reg_type: Union[str, None] = None,
+        l1_coef: float = 0,
+        l2_coef: float = 0,
+        sgd_samples: Union[int, float, None] = None,
+        rand_state: int = 1
+    ) -> None:
         """
         The method initializes a class fields.
 
@@ -542,8 +551,10 @@ class LinearRegression:
                 f"l2_coef={self.__l2_coef}," + cur_sgd_samples + f"rand_state={self.__rand_state}.")
 
     @staticmethod
-    def calc_metric(pred_y: numpy.array, y: numpy.array,
-                    metric_type: Union[str, None]) -> Union[float, None]:
+    def calc_metric(
+        pred_y: numpy.array,
+        y: numpy.array,
+        metric_type: Union[str, None]) -> Union[float, None]:
         """
         The method calculates the metric.
 
@@ -571,8 +582,12 @@ class LinearRegression:
         else:
             return None
 
-    def calc_grad(self, x: pandas.DataFrame, y: numpy.array,
-                  pred_y: numpy.array) -> numpy.array:
+    def calc_grad(
+        self,
+        x: pandas.DataFrame,
+        y: numpy.array,
+        pred_y: numpy.array
+    ) -> numpy.array:
         """
         The method calculates a gradient.
 
@@ -639,8 +654,11 @@ class LinearRegression:
         else:
             return 0
 
-    def fit(self, x: pandas.DataFrame, y: pandas.Series,
-            log_flag: Union[int, bool] = False) -> None:
+    def fit(
+            self, x: pandas.DataFrame,
+            y: pandas.Series,
+            log_flag: Union[int, bool] = False
+        ) -> None:
         """
         The method fits the model by samples.
 
@@ -708,7 +726,10 @@ class LinearRegression:
 
         return self.__weights[1:] if self.__weights is not None else None
 
-    def predict(self, x: pandas.DataFrame) -> Union[numpy.array, None]:
+    def predict(
+        self,
+        x: pandas.DataFrame
+    ) -> Union[numpy.array, None]:
         """
         The method predicts target values based on samples.
 
@@ -726,8 +747,13 @@ class LinearRegression:
         else:
             return None
 
-    def reporting(self, num_epoch: int, loss_value: float = 0, metric_value: Union[float, None] = 0,
-                  log_flag: Union[int, bool] = False) -> None:
+    def reporting(
+        self,
+        num_epoch: int,
+        loss_value: float = 0,
+        metric_value: Union[float, None] = 0,
+        log_flag: Union[int, bool] = False
+    ) -> None:
         """
         The method prints loss and metric values every n epoch.
 
@@ -751,7 +777,10 @@ class LinearRegression:
             if not (num_epoch % log_flag) or num_epoch == 1:
                 print(first_sent_part + second_sent_part)
 
-    def sgd_select(self, sample_count: int) -> list:
+    def sgd_select(
+        self,
+        sample_count: int
+    ) -> list:
         """
         The method randomly selects indexes of samples based on a seed.
 
@@ -767,7 +796,11 @@ class LinearRegression:
         else:
             return random.sample(range(sample_count), sample_count)
 
-    def update_weights(self, grad: numpy.array, num_epoch: int) -> None:
+    def update_weights(
+        self,
+        grad: numpy.array,
+        num_epoch: int
+    ) -> None:
         """
         The method updates model weights.
 
